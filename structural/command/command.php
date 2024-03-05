@@ -18,6 +18,18 @@ class FileStorageCommand implements Command
     }
 }
 
+class InMemoryStorageCommand implements Command
+{
+    public function __construct(private string $message)
+    {
+    }
+
+    public function execute(): void
+    {
+        echo "Memory has message: $this->message" . PHP_EOL;
+    }
+}
+
 class MailMessageCommand implements Command
 {
     public function __construct(private string $email, private string $message)
@@ -83,8 +95,9 @@ class CreateMessageInvoker
 
 $handler = new CreateMessageInvoker();
 
-$handler->setStoreCommand(new FileStorageCommand("This is secret message"));
-$handler->setNotifyCommand(new MailMessageCommand('marcin@lenkowski.net', 'This is secret message'));
+$message = "First message";
+$handler->setStoreCommand(new FileStorageCommand($message));
+$handler->setNotifyCommand(new MailMessageCommand('marcin@lenkowski.net', $message));
 
 $handler();
 
@@ -92,9 +105,10 @@ echo "////////////////////////\n";
 
 $handler = new CreateMessageInvoker();
 
-$handler->setStoreCommand(new FileStorageCommand("This is secret message"));
+$message = "Second message";
+$handler->setStoreCommand(new InMemoryStorageCommand($message));
 $slackHook = new SlackHook('https://hooks.slack.com/services/123456789/123456789/123456789');
-$handler->setNotifyCommand(new SlackMessageCommand($slackHook, 'This is secret message'));
+$handler->setNotifyCommand(new SlackMessageCommand($slackHook, $message));
 
 $handler();
 
@@ -102,7 +116,8 @@ echo "////////////////////////\n";
 
 $handler = new CreateMessageInvoker();
 
-$handler->setStoreCommand(new FileStorageCommand("This is secret message"));
+$message = "Third message";
+$handler->setStoreCommand(new FileStorageCommand($message));
 // no notify command
 
 $handler();
