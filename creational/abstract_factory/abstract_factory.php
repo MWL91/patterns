@@ -166,7 +166,7 @@ class BookingApp
 
 // use basic account
 $app = new BookingApp(new BasicAccount());
-$app->search("Portugal");
+$app->search("Portugal", ['filter1', 'filter2']);
 $app->book(1);
 
 // use medium account
