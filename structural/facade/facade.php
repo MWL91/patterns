@@ -126,6 +126,5 @@ $lights = [
 $curtain = new CurtainRemote();
 $weather = new WeatherStation();
 
-$studio = new HardwareStudio($lights, $curtain, $weather);
+$studio = new Studio($lights, $curtain, $weather);
 $studio->on();
-$studio->setLightPower(10);

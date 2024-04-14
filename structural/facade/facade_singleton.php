@@ -222,9 +222,8 @@ class StudioFacade
     }
 }
 
-StudioFacade::fake();
 StudioFacade::on();
 StudioFacade::setLightPower(10);
 
 StudioFacade::assertLightOn(true);
-StudioFacade::assertLightPower(30);
+StudioFacade::assertLightPower(10);
