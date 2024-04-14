@@ -112,7 +112,7 @@ structure($technology);
 echo "\n\n";
 
 echo "Dział sprzedaży:\n";
-structure($technology);
+structure($sales);
 echo "\n\n";
 
 echo "Dział designu:\n";
