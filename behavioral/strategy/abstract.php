@@ -82,5 +82,5 @@ $products = [
 $standardCustomerCart = new Cart($products, new StandardCustomerStrategy());
 echo 'Standard price: ' . $standardCustomerCart->calculatePrice() . "zł\n";
 
-$standardCustomerCart = new Cart($products, new BuyTwoPayOneStrategy());
+$standardCustomerCart = new Cart($products, new WeekendBuyTwoPayOneStrategy());
 echo 'Discount price: ' . $standardCustomerCart->calculatePrice() . "zł\n";

@@ -25,8 +25,8 @@ class Cart
     private Strategy $strategy;
 
     const array STRATEGIES = [
+        WeekendBuyTwoPayOneStrategy::class,
         StandardCustomerStrategy::class,
-        BuyTwoPayOneStrategy::class
     ];
 
     public function __construct(
@@ -38,8 +38,9 @@ class Cart
         }
 
         foreach(self::STRATEGIES as $strategy) {
-            $this->strategy = new $strategy();
-            if($this->strategy->isSatisfiedBy()) {
+            $strategyInstance = new $strategy();
+            if($strategyInstance->isSatisfiedBy()) {
+                $this->strategy = $strategyInstance;
                 break;
             }
         }
@@ -71,7 +72,7 @@ class StandardCustomerStrategy implements Strategy
     }
 }
 
-class BuyTwoPayOneStrategy implements Strategy
+class WeekendBuyTwoPayOneStrategy implements Strategy
 {
     public function getPrice(array $products): float
     {
@@ -93,7 +94,7 @@ class BuyTwoPayOneStrategy implements Strategy
 
     public function isSatisfiedBy(): bool
     {
-        return date('w') <= 5;
+        return date('w') > 5;
     }
 }
 
