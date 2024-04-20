@@ -106,4 +106,4 @@ $products = [
 ];
 
 $standardCustomerCart = new Cart($products);
-echo 'Standard price: ' . $standardCustomerCart->calculatePrice() . "zł\n";
+echo 'Price: ' . $standardCustomerCart->calculatePrice() . "zł\n";

@@ -51,7 +51,7 @@ class StandardCustomerStrategy implements Strategy
     }
 }
 
-class BuyTwoPayOneStrategy implements Strategy
+class WeekendBuyTwoPayOneStrategy implements Strategy
 {
     public function getPrice(array $products): float
     {
